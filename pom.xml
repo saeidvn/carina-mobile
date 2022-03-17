@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.solvd</groupId>
+    <artifactId>carina-mobile</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <javaVersion>11</javaVersion>
+        <carinaVersion>7.3.15</carinaVersion>
+        <log4jVerison>2.17.1</log4jVerison>
+        <apacheStringUtilsVersion>3.12.0</apacheStringUtilsVersion>
+        <apacheFileUtilsVersion>2.11.0</apacheFileUtilsVersion>
+        <mavenSurfirePluginVersion>3.0.0-M5</mavenSurfirePluginVersion>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.qaprosoft</groupId>
+            <artifactId>carina-core</artifactId>
+            <version>${carinaVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${apacheFileUtilsVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apacheStringUtilsVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4jVerison}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4jVerison}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4jVerison}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${javaVersion}</source>
+                    <target>${javaVersion}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${mavenSurfirePluginVersion}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
