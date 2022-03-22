@@ -3,12 +3,11 @@ package com.solvd.carinamobile.page.common;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class HelpPageBase extends AbstractPage {
+public abstract class MyAccountPageBase extends AbstractPage {
 
-    public HelpPageBase(WebDriver driver) {
+    public MyAccountPageBase(WebDriver driver) {
         super(driver);
     }
 
-    public abstract boolean isHelpContentTitleVisible();
-
+    public abstract boolean isHomeUserStatusVisible();
 }
