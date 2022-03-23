@@ -31,7 +31,7 @@ public abstract class ProductListResultPageBase extends AbstractPage {
 
     public abstract boolean isBooksResultVisible();
 
-    public abstract boolean isHealthAndHouseholdResultVisible();
+    public abstract String getHealthAndHouseholdResultText();
 
     public abstract String getHelpText();
 

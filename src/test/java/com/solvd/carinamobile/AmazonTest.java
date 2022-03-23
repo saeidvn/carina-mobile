@@ -83,8 +83,8 @@ public class AmazonTest implements IAbstractTest {
         amazonPage.clickOnMenuButton();
 
         ProductListResultPageBase healthAndHouseholdResult = amazonPage.clickOnHealthAndHouseholdButton();
-        Assert.assertTrue(healthAndHouseholdResult.isHealthAndHouseholdResultVisible()
-                , "Health & Household result is missing.");
+        Assert.assertEquals(healthAndHouseholdResult.getHealthAndHouseholdResultText()
+                , "Health, Household and Baby Care", "Health and household text not equals.");
 
     }
 

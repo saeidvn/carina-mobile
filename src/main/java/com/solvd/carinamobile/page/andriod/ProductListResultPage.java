@@ -28,8 +28,8 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     @FindBy(xpath = "//div[@class='a-section']")
     private ExtendedWebElement booksResult;
 
-    @FindBy(xpath = "//div[@class='apb-browse-slot-margin']")
-    private ExtendedWebElement healthAndHouseholdResult;
+    @FindBy(xpath = "//h1[text()='Health, Household and Baby Care']")
+    private ExtendedWebElement healthAndHouseholdText;
 
     @FindBy(xpath = "//h1[text()=' Help']")
     private ExtendedWebElement helpText;
@@ -106,8 +106,8 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     }
 
     @Override
-    public boolean isHealthAndHouseholdResultVisible() {
-        return healthAndHouseholdResult.isVisible();
+    public String getHealthAndHouseholdResultText() {
+        return healthAndHouseholdText.getText();
     }
 
     @Override
