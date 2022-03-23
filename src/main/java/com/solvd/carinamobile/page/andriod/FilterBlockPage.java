@@ -19,9 +19,6 @@ public class FilterBlockPage extends FilterBlockPageBase {
     @FindBy(xpath = "//li[contains(@class,'sorting_option___3bTnn') and text()='Top Sellers']")
     private ExtendedWebElement topSellersButton;
 
-    @FindBy(xpath = "//button[@class='gl-cta gl-cta--primary gl-cta--full-width']")
-    private ExtendedWebElement applyButton;
-
     public FilterBlockPage(WebDriver driver) {
         super(driver);
     }
@@ -57,17 +54,6 @@ public class FilterBlockPage extends FilterBlockPageBase {
     @Override
     public boolean isTopSellersButtonPresent() {
         return topSellersButton.isPresent();
-    }
-
-    @Override
-    public boolean isApplyButtonPresent() {
-        return applyButton.isPresent();
-    }
-
-    @Override
-    public ProductListResultPageBase clickOnApplyButton() {
-        applyButton.clickIfPresent();
-        return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
 }

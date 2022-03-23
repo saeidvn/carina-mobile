@@ -47,9 +47,6 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
     @FindBy(xpath = "//div[@class='row keywords___3OtDK']/a[@class='gl-filter keyword___1pfOO uppercased___1YiBt'][1]")
     private ExtendedWebElement popularRightNow;
 
-    @FindBy(xpath = "//button[@data-auto-id='open-mobile-menu-button']")
-    private ExtendedWebElement mobileMenuButton;
-
     @FindBy(xpath = "(//div[@class='plp-product-card__wishlist-button___qAqKB toggle_wishlist_button___my-ER  '])[%s]")
     private ExtendedWebElement addToWishlistButton;
 
@@ -76,14 +73,12 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
     @Override
     public void typeEmail(String email) {
         emailField.type(email);
-//        emailField.sendKeys(Keys.ENTER);
         hideKeyboard();
     }
 
     @Override
     public void clickOnContinueButton() {
-//        continueButton.click();
-        tap(continueButton);
+        continueButton.click();
     }
 
     @Override
@@ -148,6 +143,11 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
     @Override
     public boolean isLoginButtonVisible() {
         return loginButton.isVisible();
+    }
+
+    @Override
+    public boolean isSearchButtonVisible() {
+        return searchButton.isVisible();
     }
 
     @Override

@@ -23,6 +23,8 @@ public abstract class AdidasHomePageBase extends AbstractPage {
 
     public abstract MyAccountPageBase clickOnVisitYourAccountButton();
 
+    public abstract boolean isSearchButtonVisible();
+
     public abstract void clickOnSearchButton();
 
     public abstract SearchBlockPageBase typeSpecialCharacter(String specialCharacter);

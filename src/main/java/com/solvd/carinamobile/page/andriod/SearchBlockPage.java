@@ -12,15 +12,15 @@ import org.openqa.selenium.support.FindBy;
 public class SearchBlockPage extends SearchBlockPageBase {
 
     @FindBy(xpath = "//a[contains(@class,'search-suggestion') and contains(@href, '/search?q=cap')]")
-    private ExtendedWebElement capBtn;
+    private ExtendedWebElement capButton;
 
     public SearchBlockPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public ProductListResultPageBase clickOnCapBtn() {
-        capBtn.clickIfPresent(10);
+    public ProductListResultPageBase clickOnCapButton() {
+        capButton.clickIfPresent(10);
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
@@ -31,6 +31,6 @@ public class SearchBlockPage extends SearchBlockPageBase {
 
     @Override
     public boolean isNewFrameVisible() {
-        return capBtn.isPresent();
+        return capButton.isPresent();
     }
 }

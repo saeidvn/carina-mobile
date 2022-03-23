@@ -11,9 +11,6 @@ public abstract class AccessoriesPageBase extends AbstractPage {
         super(driver);
     }
 
-//    public abstract void openLink(String link);
-
-//    public abstract FilterBlockPageBase clickFilterButton();
     public abstract void clickFilterButton();
 
     public abstract boolean isFilterButtonPresent();

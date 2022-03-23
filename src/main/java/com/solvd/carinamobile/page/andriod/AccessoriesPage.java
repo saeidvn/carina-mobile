@@ -15,9 +15,6 @@ import java.util.stream.Collectors;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AccessoriesPageBase.class)
 public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils {
 
-//    @ExtendedFindBy(androidUIAutomator = "name = \"URL\"")
-//    private ExtendedWebElement urlField;
-
     @FindBy(xpath = "//div[@class='footer-bottom___1H5NH']")
     private ExtendedWebElement footerContainer;
 
@@ -43,16 +40,6 @@ public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils
         super(driver);
     }
 
-//    public void openLink(String link) {
-//        urlField.click(5);
-////        urlField.type(link + Keys.ENTER);
-//    }
-
-    /**
-     *
-     * @return
-     */
-
     @Override
     public void clickFilterButton() {
         filterButton.click(20);
@@ -63,12 +50,6 @@ public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils
         sortByButton.click(20);
         return initPage(getDriver(), FilterBlockPageBase.class);
     }
-
-//    @Override
-//    public FilterBlockPageBase clickFilterButton() {
-//        filterButton.clickIfPresent();
-//        return initPage(getDriver(), FilterBlockPageBase.class);
-//    }
 
     @Override
     public boolean isFilterButtonPresent() {

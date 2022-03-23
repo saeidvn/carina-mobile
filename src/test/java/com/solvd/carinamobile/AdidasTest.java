@@ -42,15 +42,15 @@ public class AdidasTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(adidasHomePage.isContinueButtonVisible(), "Continue button isn't present.");
         adidasHomePage.clickOnContinueButton();
 
-//        Assert.assertTrue(adidasHomePage.isPasswordFieldPresent(), "Password field isn't present.");
+        Assert.assertTrue(adidasHomePage.isPasswordFieldPresent(), "Password field isn't present.");
         adidasHomePage.typePassword(R.CONFIG.get("password"));
 
-//        Assert.assertTrue(adidasHomePage.isLoginBtnVisible(), "Login button isn't present.");
-//        adidasHomePage.clickOnLoginBtn();
+        Assert.assertTrue(adidasHomePage.isLoginButtonVisible(), "Login button isn't present.");
+        adidasHomePage.clickOnLoginButton();
 
-//        Assert.assertTrue(adidasHomePage.isVisitYourAccountPresent(), "");
-//        MyAccountPage myAccountPage = adidasHomePage.clickOnVisitYourAccountButton();
-//        Assert.assertTrue(myAccountPage.isHomeUserStatusVisible(), "User status is missing.");
+        Assert.assertTrue(adidasHomePage.isVisitYourAccountPresent(), "");
+        MyAccountPageBase myAccountPage = adidasHomePage.clickOnVisitYourAccountButton();
+        Assert.assertTrue(myAccountPage.isHomeUserStatusVisible(), "User status is missing.");
     }
 
     @TestRailCases(testCasesId = "3")
@@ -94,13 +94,14 @@ public class AdidasTest implements IAbstractTest, IMobileUtils {
         adidasHomePage.open();
         Assert.assertTrue(adidasHomePage.isPageOpened(), "Adidas home page isn't opened.");
 
+        Assert.assertTrue(adidasHomePage.isSearchButtonVisible(), "Search button isn't visible.");
         adidasHomePage.clickOnSearchButton();
 
         Assert.assertTrue(adidasHomePage.isSearchFieldPresent(), "Search box isn't present.");
         SearchBlockPageBase searchBlock = adidasHomePage.searchProduct("cap");
 
         Assert.assertTrue(searchBlock.isNewFrameVisible(), "Result page isn't opened.");
-        ProductListResultPageBase searchResultPage = searchBlock.clickOnCapBtn();
+        ProductListResultPageBase searchResultPage = searchBlock.clickOnCapButton();
 
         Assert.assertTrue(searchResultPage.isProductListNotEmpty(), "Search result page is empty.");
     }
@@ -181,7 +182,7 @@ public class AdidasTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(accessoriesPage.isSortByButtonPresent(), "'SORT BY' button isn't present.");
         FilterBlockPageBase filterBlockPage = accessoriesPage.clickOnSortByButton();
 
-        Assert.assertTrue(filterBlockPage.isLowPriceToHighPriceButtonPresent(),
+        Assert.assertTrue(filterBlockPage.isHighPriceToLowPriceButtonPresent(),
                 "HighPrice to LowPrice  filter button is not visible.");
         ProductListResultPageBase highPriceToLowPricePage = filterBlockPage.clickOnHighPriceToLowButton();
 

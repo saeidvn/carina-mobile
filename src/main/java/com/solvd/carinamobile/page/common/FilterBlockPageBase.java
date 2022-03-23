@@ -21,8 +21,4 @@ public abstract class FilterBlockPageBase extends AbstractPage {
 
     public abstract boolean isTopSellersButtonPresent();
 
-    public abstract boolean isApplyButtonPresent();
-
-    public abstract ProductListResultPageBase clickOnApplyButton();
-
 }

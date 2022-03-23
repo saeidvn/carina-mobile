@@ -9,7 +9,7 @@ public abstract class SearchBlockPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract ProductListResultPageBase clickOnCapBtn();
+    public abstract ProductListResultPageBase clickOnCapButton();
 
     public abstract SearchResultPageBase noResultForSearch();
 
