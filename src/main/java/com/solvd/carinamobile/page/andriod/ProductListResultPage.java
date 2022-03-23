@@ -22,6 +22,15 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     @FindBy(xpath = "//button[@class='gl-modal__close']")
     private ExtendedWebElement popupButton;
 
+    @FindBy(xpath = "//span[@class='a-size-base a-color-base s-medium-weight-text a-text-normal']")
+    private ExtendedWebElement amazonSearchResult;
+
+    @FindBy(xpath = "//div[@class='a-section']")
+    private ExtendedWebElement booksResult;
+
+    @FindBy(xpath = "//div[@class='apb-browse-slot-margin']")
+    private ExtendedWebElement healthAndHouseholdResult;
+
     public ProductListResultPage(WebDriver driver) {
         super(driver);
     }
@@ -59,6 +68,21 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     @Override
     public void scrollDownPage() {
         swipe(footerContainer);
+    }
+
+    @Override
+    public boolean isAmazonResultVisible() {
+        return amazonSearchResult.isVisible(10);
+    }
+
+    @Override
+    public boolean isBooksResultVisible() {
+        return booksResult.isVisible();
+    }
+
+    @Override
+    public boolean isHealthAndHouseholdResultVisible() {
+        return healthAndHouseholdResult.isVisible();
     }
 
 }

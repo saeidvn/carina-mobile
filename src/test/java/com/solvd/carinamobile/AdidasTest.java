@@ -9,7 +9,7 @@ import com.solvd.carinamobile.page.common.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class AdidasTest implements IAbstractTest, IMobileUtils {
+public class AdidasTest implements IAbstractTest {
 
     private static final String ACCESSORIES_LINK = "https://www.adidas.co.uk/y_3-accessories";
 

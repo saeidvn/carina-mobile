@@ -23,4 +23,10 @@ public abstract class ProductListResultPageBase extends AbstractPage {
 
     public abstract void scrollDownPage();
 
+    public abstract boolean isAmazonResultVisible();
+
+    public abstract boolean isBooksResultVisible();
+
+    public abstract boolean isHealthAndHouseholdResultVisible();
+
 }
