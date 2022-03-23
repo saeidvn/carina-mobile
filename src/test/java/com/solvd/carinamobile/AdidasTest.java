@@ -182,7 +182,7 @@ public class AdidasTest implements IAbstractTest, IMobileUtils {
         FilterBlockPageBase filterBlockPage = accessoriesPage.clickOnSortByButton();
 
         Assert.assertTrue(filterBlockPage.isLowPriceToHighPriceButtonPresent(),
-                "LowPrice to HighPrice filter button is not visible.");
+                "HighPrice to LowPrice  filter button is not visible.");
         ProductListResultPageBase highPriceToLowPricePage = filterBlockPage.clickOnHighPriceToLowButton();
 
         Assert.assertTrue(highPriceToLowPricePage.isPopupVisible(), "Popup button isn't visible.");
@@ -203,9 +203,58 @@ public class AdidasTest implements IAbstractTest, IMobileUtils {
         Assert.assertNotEquals(fourthUnSortProduct, fourthSortProduct, "Fourth products are equals.");
     }
 
+    @TestRailCases(testCasesId = "8")
+    @Test(description = "Using TOP SELLERS filter on AccessoriesPage.")
+    @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
+    public void verifyTopSellersFilter() {
+        int firstUnSortProduct, firstSortProduct;
+        int secondUnSortProduct, secondSortProduct;
+        int thirdUnSortProduct, thirdSortProduct;
+        int fourthUnSortProduct, fourthSortProduct;
+
+        AccessoriesPageBase accessoriesPage = initPage(getDriver(), AccessoriesPageBase.class);
+        accessoriesPage.openURL(ACCESSORIES_LINK);
+        Assert.assertTrue(accessoriesPage.isPageOpened(5), "Accessories page isn't opened.");
+
+        Assert.assertTrue(accessoriesPage.isFooterContainerPresent(), "Footer container is missing.");
+        accessoriesPage.scrollDownPage();
+
+        firstUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(0);
+        secondUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(1);
+        thirdUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(3);
+        fourthUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(5);
+
+        Assert.assertTrue(accessoriesPage.isFilterButtonPresent(), "Filter button isn't visible.");
+        accessoriesPage.clickFilterButton();
+
+        Assert.assertTrue(accessoriesPage.isSortByButtonPresent(), "'SORT BY' button isn't present.");
+        FilterBlockPageBase filterBlockPage = accessoriesPage.clickOnSortByButton();
+
+        Assert.assertTrue(filterBlockPage.isTopSellersButtonPresent(),
+                "TOP SELLERS filter button is not visible.");
+        ProductListResultPageBase topSellersPage = filterBlockPage.clickOnTopSellersButton();
+
+        Assert.assertTrue(topSellersPage.isPopupVisible(), "Popup button isn't visible.");
+        topSellersPage.clickOnClosePopUp();
+
+        topSellersPage.scrollDownPage();
+
+        firstSortProduct = topSellersPage.getResultPricesAsNumbers().get(0);
+        Assert.assertNotEquals(firstUnSortProduct, firstSortProduct, "First products are equals.");
+
+        secondSortProduct = topSellersPage.getResultPricesAsNumbers().get(1);
+        Assert.assertNotEquals(secondUnSortProduct, secondSortProduct, "Second products are equals.");
+
+        thirdSortProduct = topSellersPage.getResultPricesAsNumbers().get(3);
+        Assert.assertNotEquals(thirdUnSortProduct, thirdSortProduct, "Third products are equals.");
+
+        fourthSortProduct = topSellersPage.getResultPricesAsNumbers().get(5);
+        Assert.assertNotEquals(fourthUnSortProduct, fourthSortProduct, "Fourth products are equals.");
+    }
+
     @TestRailCases(testCasesId = "9")
     @Test(description = "Adding product to wishlist from Accessories page.")
-    @MethodOwner(owner = "Saeid Vahidnia", platform = "web")
+    @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
     public void checkAddProductToWishlist() {
         AccessoriesPageBase accessoriesPage = initPage(getDriver(), AccessoriesPageBase.class);
         accessoriesPage.openURL(ACCESSORIES_LINK);

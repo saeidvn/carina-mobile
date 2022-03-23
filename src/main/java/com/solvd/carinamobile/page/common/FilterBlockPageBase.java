@@ -10,11 +10,10 @@ public abstract class FilterBlockPageBase extends AbstractPage {
     }
 
     public abstract ProductListResultPageBase clickOnLowPriceToHighButton();
-//    public abstract void clickOnLowPriceToHighButton();
 
     public abstract ProductListResultPageBase clickOnHighPriceToLowButton();
 
-    public abstract void clickOnTopSellersButton();
+    public abstract ProductListResultPageBase clickOnTopSellersButton();
 
     public abstract boolean isLowPriceToHighPriceButtonPresent();
 

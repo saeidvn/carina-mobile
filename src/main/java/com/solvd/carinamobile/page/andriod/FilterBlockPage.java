@@ -39,8 +39,9 @@ public class FilterBlockPage extends FilterBlockPageBase {
     }
 
     @Override
-    public void clickOnTopSellersButton() {
+    public ProductListResultPageBase clickOnTopSellersButton() {
         topSellersButton.clickIfPresent();
+        return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
     @Override
