@@ -23,7 +23,7 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
     @FindBy(xpath = "//input[@class='gl-input__field']")
     private ExtendedWebElement emailField;
 
-    @FindBy(xpath = "//*[contains(@class,'gl-cta gl-cta--primary gl-cta--full-width gl-vspace') and contains(@aria-label,'Continue')]")
+    @FindBy(xpath = "//button[@aria-label='Continue']")
     private ExtendedWebElement continueButton;
 
     @FindBy(xpath = "//input[@class='gl-input__field']")
@@ -76,18 +76,18 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
     @Override
     public void typeEmail(String email) {
         emailField.type(email);
-        emailField.sendKeys(Keys.ENTER);
+//        emailField.sendKeys(Keys.ENTER);
         hideKeyboard();
     }
 
     @Override
     public void clickOnContinueButton() {
-        continueButton.click(20);
+//        continueButton.click();
+        tap(continueButton);
     }
 
     @Override
     public void typePassword(String password) {
-        passwordField.pause(20);
         passwordField.type(password);
         hideKeyboard();
     }

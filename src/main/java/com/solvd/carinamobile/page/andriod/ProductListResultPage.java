@@ -19,6 +19,9 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     @FindBy(xpath = "//div[@class='footer-bottom___1H5NH']")
     private ExtendedWebElement footerContainer;
 
+    @FindBy(xpath = "//button[@class='gl-modal__close']")
+    private ExtendedWebElement popupButton;
+
     public ProductListResultPage(WebDriver driver) {
         super(driver);
     }
@@ -41,6 +44,16 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     @Override
     public boolean isProductListNotEmpty() {
         return productPrices.isEmpty();
+    }
+
+    @Override
+    public boolean isPopupVisible() {
+        return popupButton.isVisible(10);
+    }
+
+    @Override
+    public void clickOnClosePopUp() {
+        popupButton.click(10);
     }
 
     @Override

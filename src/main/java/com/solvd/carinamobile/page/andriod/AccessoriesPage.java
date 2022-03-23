@@ -3,7 +3,6 @@ package com.solvd.carinamobile.page.andriod;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.solvd.carinamobile.page.common.AccessoriesPageBase;
 import com.solvd.carinamobile.page.common.FilterBlockPageBase;
 import com.solvd.carinamobile.page.common.ProductListResultPageBase;
@@ -16,8 +15,8 @@ import java.util.stream.Collectors;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AccessoriesPageBase.class)
 public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils {
 
-    @ExtendedFindBy(androidUIAutomator = "name = \"URL\"")
-    private ExtendedWebElement urlField;
+//    @ExtendedFindBy(androidUIAutomator = "name = \"URL\"")
+//    private ExtendedWebElement urlField;
 
     @FindBy(xpath = "//div[@class='footer-bottom___1H5NH']")
     private ExtendedWebElement footerContainer;
@@ -28,7 +27,7 @@ public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils
     @FindBy(xpath = "//div[@class='filters-icon-float___3d8_p']")
     private ExtendedWebElement filterButton;
 
-    @FindBy(xpath = "//div[@class='gl-wishlist-icon wishlist_button___3ppwb outlined-icon-color___2xwB3']")
+    @FindBy(xpath = "//a[@data-auto-id='cart-wishlist-icon-header']")
     private ExtendedWebElement wishListButton;
 
     @FindBy(xpath = "(//div[@class='plp-product-card__wishlist-button___qAqKB toggle_wishlist_button___my-ER  '])[%s]")
@@ -38,7 +37,6 @@ public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils
     private ExtendedWebElement sortByButton;
 
     @FindBy(xpath = "//button[@class='gl-modal__close']")
-//    @FindBy(xpath = "//button[@aria-label='Close']")
     private ExtendedWebElement popupButton;
 
     public AccessoriesPage(WebDriver driver) {
@@ -99,7 +97,7 @@ public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils
 
     @Override
     public ProductListResultPageBase clickOnWishListButton() {
-        wishListButton.clickIfPresent();
+        wishListButton.click(20);
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
@@ -123,6 +121,7 @@ public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils
         return footerContainer.isPresent();
     }
 
+    @Override
     public void clickOnClosePopUp() {
         popupButton.click(20);
     }

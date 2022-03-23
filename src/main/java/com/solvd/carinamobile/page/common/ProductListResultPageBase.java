@@ -13,9 +13,13 @@ public abstract class ProductListResultPageBase extends AbstractPage {
 
     public abstract boolean isProductListNotEmpty();
 
+    public abstract boolean isPopupVisible();
+
     public abstract List<String> getResultPricesAsStrings();
 
     public abstract List<Integer> getResultPricesAsNumbers();
+
+    public abstract void clickOnClosePopUp();
 
     public abstract void scrollDownPage();
 
