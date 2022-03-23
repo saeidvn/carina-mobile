@@ -28,21 +28,30 @@ public class AmazonTest implements IAbstractTest {
     }
 
     @TestRailCases(testCasesId = "11")
-    @Test(description = "Open the Amazon home page and login to account.")
+    @Test(description = "Open the Amazon home page, search 'saw' and use movie's filter.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
-    public void checkLoginToAccount() {
+    public void checkFilterButton() {
         AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
         amazonPage.openURL(AMAZON_LINK);
         Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
 
-        Assert.assertTrue(amazonPage.isSignInButtonVisible(), "Sign-in button is missing.");
-        amazonPage.clickOnSignInButton();
+        Assert.assertTrue(amazonPage.isSearchFieldVisible(), "Search field is missing.");
+        amazonPage.clickOnSearchField();
 
-        Assert.assertTrue(amazonPage.isBestSellersButtonVisible(), "Best sellers button is missing.");
-        amazonPage.clickOnBestSellersButton();
+        ProductListResultPageBase sawResultPage = amazonPage.typeProductName("saw");
+        Assert.assertTrue(sawResultPage.isAmazonResultVisible(), "Amazon result page is missing.");
 
-        Assert.assertTrue(amazonPage.isBooksButtonVisible(), "Books button is missing.");
-        amazonPage.clickOnBooksButton();
+        Assert.assertTrue(sawResultPage.isFilterButtonVisible(), "Filter button is missing.");
+        sawResultPage.clickOnFilterButton();
+
+        Assert.assertTrue(sawResultPage.isMovieButtonVisible(), "Movie button is missing.");
+        sawResultPage.clickOnMovieButton();
+
+        Assert.assertTrue(sawResultPage.isCloseFilterButtonVisible(), "Close Filter button is missing.");
+        sawResultPage.clickOnCloseFilterButton();
+
+        sawResultPage.getResultMoviesAsStrings();
+        Assert.assertFalse(sawResultPage.isMoviesResultEmpty(), "Movies are not found.");
     }
 
     @TestRailCases(testCasesId = "12")
@@ -77,6 +86,36 @@ public class AmazonTest implements IAbstractTest {
         Assert.assertTrue(healthAndHouseholdResult.isHealthAndHouseholdResultVisible()
                 , "Health & Household result is missing.");
 
+    }
+
+    @TestRailCases(testCasesId = "14")
+    @Test(description = "Open the Amazon home page, click on the Customer Service.")
+    @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
+    public void checkCustomerService() {
+        AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
+        amazonPage.openURL(AMAZON_LINK);
+        Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
+
+        Assert.assertTrue(amazonPage.isCustomerServiceButtonVisible(), "Customer Service button is missing.");
+        ProductListResultPageBase customerServiceResultPage = amazonPage.clickOnCustomerServiceButton();
+        Assert.assertTrue(customerServiceResultPage.isCustomerServiceResultVisible(), "Oculus result is missing.");
+    }
+
+    @TestRailCases(testCasesId = "15")
+    @Test(description = "Open the Amazon home page and type not valid email.")
+    @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
+    public void checkNotValidEmail() {
+        AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
+        amazonPage.openURL(AMAZON_LINK);
+        Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
+
+        Assert.assertTrue(amazonPage.isSignInButtonVisible(), "Sign-in button is missing.");
+        amazonPage.clickOnSignInButton();
+
+        Assert.assertTrue(amazonPage.isEmailFieldVisible(), "Email field is missing.");
+        amazonPage.typeEmail("saeidasa@gmail");
+        Assert.assertEquals(amazonPage.getErrorText(), "No account found with email address"
+                , "Error text is not visible.");
     }
 
 }

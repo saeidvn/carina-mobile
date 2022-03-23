@@ -25,8 +25,26 @@ public abstract class ProductListResultPageBase extends AbstractPage {
 
     public abstract boolean isAmazonResultVisible();
 
+    public abstract boolean isFilterButtonVisible();
+
+    public abstract void clickOnFilterButton();
+
     public abstract boolean isBooksResultVisible();
 
     public abstract boolean isHealthAndHouseholdResultVisible();
+
+    public abstract boolean isCustomerServiceResultVisible();
+
+    public abstract boolean isMovieButtonVisible();
+
+    public abstract void clickOnMovieButton();
+
+    public abstract boolean isCloseFilterButtonVisible();
+
+    public abstract void clickOnCloseFilterButton();
+
+    public abstract List<String> getResultMoviesAsStrings();
+
+    public abstract boolean isMoviesResultEmpty();
 
 }

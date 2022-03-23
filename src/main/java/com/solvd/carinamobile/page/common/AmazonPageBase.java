@@ -15,10 +15,6 @@ public abstract class AmazonPageBase extends AbstractPage {
 
     public abstract ProductListResultPageBase typeProductName(String productName);
 
-    public abstract boolean isSignInButtonVisible();
-
-    public abstract void clickOnSignInButton();
-
     public abstract boolean isBestSellersButtonVisible();
 
     public abstract void clickOnBestSellersButton();
@@ -34,5 +30,19 @@ public abstract class AmazonPageBase extends AbstractPage {
     public abstract boolean isHealthAndHouseholdButtonVisible();
 
     public abstract ProductListResultPageBase clickOnHealthAndHouseholdButton();
+
+    public abstract boolean isCustomerServiceButtonVisible();
+
+    public abstract ProductListResultPageBase clickOnCustomerServiceButton();
+
+    public abstract boolean isSignInButtonVisible();
+
+    public abstract void clickOnSignInButton();
+
+    public abstract boolean isEmailFieldVisible();
+
+    public abstract void typeEmail(String email);
+
+    public abstract String getErrorText();
 
 }

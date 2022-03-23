@@ -14,9 +14,6 @@ public class AmazonPage extends AmazonPageBase {
     @FindBy(xpath = "//input[@class='nav-input nav-progressive-attribute']")
     private ExtendedWebElement searchField;
 
-    @FindBy(xpath = "//a[@id='nav-button-avatar']")
-    private ExtendedWebElement signInButton;
-
     @FindBy(xpath = "//div[@id='nav-gwbar']/a[text()='Best Sellers']")
     private ExtendedWebElement bestSellersButton;
 
@@ -28,6 +25,18 @@ public class AmazonPage extends AmazonPageBase {
 
     @FindBy(xpath = "//li/a[text()='Health & Household']")
     private ExtendedWebElement healthAndHouseholdButton;
+
+    @FindBy(xpath = "(//a[@class='nav-a '])[11]")
+    private ExtendedWebElement customerServiceButton;
+
+    @FindBy(xpath = "//a[@class='nav-a nav-progressive-attribute']")
+    private ExtendedWebElement signInButton;
+
+    @FindBy(xpath = "//input[@id='ap_email_login']")
+    private ExtendedWebElement emailField;
+
+    @FindBy(xpath = "//h4[text()='No account found with email address']")
+    private ExtendedWebElement errorText;
 
     public AmazonPage(WebDriver driver) {
         super(driver);
@@ -48,16 +57,6 @@ public class AmazonPage extends AmazonPageBase {
         searchField.type(productName);
         searchField.sendKeys(Keys.ENTER);
         return initPage(getDriver(), ProductListResultPageBase.class);
-    }
-
-    @Override
-    public boolean isSignInButtonVisible() {
-        return signInButton.isVisible();
-    }
-
-    @Override
-    public void clickOnSignInButton() {
-        signInButton.click(10);
     }
 
     @Override
@@ -101,4 +100,41 @@ public class AmazonPage extends AmazonPageBase {
         healthAndHouseholdButton.click(5);
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
+
+    @Override
+    public boolean isCustomerServiceButtonVisible() {
+        return customerServiceButton.isVisible();
+    }
+
+    @Override
+    public ProductListResultPageBase clickOnCustomerServiceButton() {
+        customerServiceButton.click(10);
+        return initPage(getDriver(), ProductListResultPageBase.class);
+    }
+
+    @Override
+    public boolean isSignInButtonVisible() {
+        return signInButton.isVisible();
+    }
+
+    @Override
+    public void clickOnSignInButton() {
+        signInButton.click(10);
+    }
+
+    @Override
+    public boolean isEmailFieldVisible() {
+        return emailField.isVisible();
+    }
+
+    @Override
+    public void typeEmail(String email) {
+        emailField.type(email + Keys.ENTER);
+    }
+
+    @Override
+    public String getErrorText() {
+        return errorText.getText();
+    }
+
 }
