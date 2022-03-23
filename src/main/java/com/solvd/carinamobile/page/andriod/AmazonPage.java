@@ -36,7 +36,13 @@ public class AmazonPage extends AmazonPageBase {
     private ExtendedWebElement emailField;
 
     @FindBy(xpath = "//h4[text()='No account found with email address']")
-    private ExtendedWebElement errorText;
+    private ExtendedWebElement incorrectEmailText;
+
+    @FindBy(xpath = "//input[@id='ap_password']")
+    private ExtendedWebElement passwordField;
+
+    @FindBy(xpath = "//*[@id='auth-error-message-box']//span")
+    private ExtendedWebElement incorrectPasswordText;
 
     public AmazonPage(WebDriver driver) {
         super(driver);
@@ -133,8 +139,23 @@ public class AmazonPage extends AmazonPageBase {
     }
 
     @Override
-    public String getErrorText() {
-        return errorText.getText();
+    public String getIncorrectEmailText() {
+        return incorrectEmailText.getText();
+    }
+
+    @Override
+    public boolean isPasswordFieldVisible() {
+        return passwordField.isVisible(10);
+    }
+
+    @Override
+    public void typePassword(String password) {
+        passwordField.type(password + Keys.ENTER);
+    }
+
+    @Override
+    public String getIncorrectPasswordText() {
+        return incorrectPasswordText.getText();
     }
 
 }

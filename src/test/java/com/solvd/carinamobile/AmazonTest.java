@@ -114,8 +114,28 @@ public class AmazonTest implements IAbstractTest {
 
         Assert.assertTrue(amazonPage.isEmailFieldVisible(), "Email field is missing.");
         amazonPage.typeEmail("saeidasa@gmail");
-        Assert.assertEquals(amazonPage.getErrorText(), "No account found with email address"
-                , "Error text not equals.");
+        Assert.assertEquals(amazonPage.getIncorrectEmailText(), "No account found with email address"
+                , "Incorrect email text not equals.");
+    }
+
+    @TestRailCases(testCasesId = "16")
+    @Test(description = "Open the Amazon home page and type invalid password.")
+    @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
+    public void checkInvalidPassword() {
+        AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
+        amazonPage.openURL(AMAZON_LINK);
+        Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
+
+        Assert.assertTrue(amazonPage.isSignInButtonVisible(), "Sign-in button is missing.");
+        amazonPage.clickOnSignInButton();
+
+        Assert.assertTrue(amazonPage.isEmailFieldVisible(), "Email field is missing.");
+        amazonPage.typeEmail("saeidvn@gmail.com");
+
+        Assert.assertTrue(amazonPage.isPasswordFieldVisible(), "Password field is missing.");
+        amazonPage.typePassword("12345");
+        Assert.assertEquals(amazonPage.getIncorrectPasswordText(), "Your password is incorrect"
+                , "Incorrect password text not equals.");
     }
 
 }

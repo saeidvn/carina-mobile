@@ -43,6 +43,12 @@ public abstract class AmazonPageBase extends AbstractPage {
 
     public abstract void typeEmail(String email);
 
-    public abstract String getErrorText();
+    public abstract String getIncorrectEmailText();
+
+    public abstract boolean isPasswordFieldVisible();
+
+    public abstract void typePassword(String password);
+
+    public abstract String getIncorrectPasswordText();
 
 }
