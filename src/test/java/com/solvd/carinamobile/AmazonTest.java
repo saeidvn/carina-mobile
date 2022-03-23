@@ -98,13 +98,13 @@ public class AmazonTest implements IAbstractTest {
 
         Assert.assertTrue(amazonPage.isCustomerServiceButtonVisible(), "Customer Service button is missing.");
         ProductListResultPageBase customerServiceResultPage = amazonPage.clickOnCustomerServiceButton();
-        Assert.assertTrue(customerServiceResultPage.isCustomerServiceResultVisible(), "Oculus result is missing.");
+        Assert.assertEquals(customerServiceResultPage.getHelpText(), "Help", "Help text not equals.");
     }
 
     @TestRailCases(testCasesId = "15")
-    @Test(description = "Open the Amazon home page and type not valid email.")
+    @Test(description = "Open the Amazon home page and type invalid email.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
-    public void checkNotValidEmail() {
+    public void checkInvalidEmail() {
         AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
         amazonPage.openURL(AMAZON_LINK);
         Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
@@ -115,7 +115,7 @@ public class AmazonTest implements IAbstractTest {
         Assert.assertTrue(amazonPage.isEmailFieldVisible(), "Email field is missing.");
         amazonPage.typeEmail("saeidasa@gmail");
         Assert.assertEquals(amazonPage.getErrorText(), "No account found with email address"
-                , "Error text is not visible.");
+                , "Error text not equals.");
     }
 
 }

@@ -31,8 +31,8 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     @FindBy(xpath = "//div[@class='apb-browse-slot-margin']")
     private ExtendedWebElement healthAndHouseholdResult;
 
-    @FindBy(xpath = "//div[@class='help-content']")
-    private ExtendedWebElement customerServiceResult;
+    @FindBy(xpath = "//h1[text()=' Help']")
+    private ExtendedWebElement helpText;
 
     @FindBy(xpath = "//span[@id='s-all-filters']")
     private ExtendedWebElement filterButton;
@@ -111,8 +111,8 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     }
 
     @Override
-    public boolean isCustomerServiceResultVisible() {
-        return customerServiceResult.isVisible();
+    public String getHelpText() {
+        return helpText.getText();
     }
 
     @Override
