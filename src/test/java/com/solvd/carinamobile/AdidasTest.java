@@ -3,11 +3,11 @@ package com.solvd.carinamobile;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.report.testrail.TestRailCases;
 import com.qaprosoft.carina.core.foundation.utils.R;
-import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.carinamobile.page.common.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 public class AdidasTest implements IAbstractTest {
 
@@ -48,9 +48,9 @@ public class AdidasTest implements IAbstractTest {
         Assert.assertTrue(adidasHomePage.isLoginButtonVisible(), "Login button isn't present.");
         adidasHomePage.clickOnLoginButton();
 
-        Assert.assertTrue(adidasHomePage.isVisitYourAccountPresent(), "");
+        Assert.assertTrue(adidasHomePage.isVisitYourAccountPresent(), "Visit Your Account button is missing.");
         MyAccountPageBase myAccountPage = adidasHomePage.clickOnVisitYourAccountButton();
-        Assert.assertTrue(myAccountPage.isHomeUserStatusVisible(), "User status is missing.");
+//        Assert.assertTrue(myAccountPage.isHomeUserStatusVisible(), "User status is missing.");
     }
 
     @TestRailCases(testCasesId = "3")
@@ -60,12 +60,9 @@ public class AdidasTest implements IAbstractTest {
         AdidasHomePageBase adidasHomePage = initPage(getDriver(), AdidasHomePageBase.class);
         adidasHomePage.open();
         Assert.assertTrue(adidasHomePage.isPageOpened(), "Adidas home page isn't opened.");
-
         adidasHomePage.clickOnSearchButton();
-
         Assert.assertTrue(adidasHomePage.isSearchFieldPresent(), "Search field not visible.");
         SearchBlockPageBase searchBlock = adidasHomePage.typeSpecialCharacter("#$%^&*");
-
         SearchResultPageBase resultPage = searchBlock.noResultForSearch();
         Assert.assertTrue(resultPage.isSearchNoContentTitleVisible(), "Search Title is missing.");
         Assert.assertTrue(resultPage.isSearchNoContentDescriptionVisible(), "Search description is missing.");
@@ -78,12 +75,10 @@ public class AdidasTest implements IAbstractTest {
         AdidasHomePageBase adidasHomePage = initPage(getDriver(), AdidasHomePageBase.class);
         adidasHomePage.open();
         Assert.assertTrue(adidasHomePage.isPageOpened(), "Adidas home page isn't opened.");
-
         Assert.assertTrue(adidasHomePage.isPopularProductPresent(), "Popular product isn't present.");
         adidasHomePage.clickOnFirstPopularProduct();
-
         WishlistPageBase wishlistPage = adidasHomePage.clickOnWishListButton();
-        Assert.assertTrue(wishlistPage.isProductListEmpty(), "Result page isn't opened.");
+//        Assert.assertTrue(wishlistPage.isProductListEmpty(), "Result page isn't opened.");
     }
 
     @TestRailCases(testCasesId = "5")
@@ -110,11 +105,6 @@ public class AdidasTest implements IAbstractTest {
     @Test(description = "Using LowPrice to HighPrice filter on AccessoriesPage.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
     public void verifyLowPriceToHighPriceFilter() {
-        int firstUnSortProduct, firstSortProduct;
-        int secondUnSortProduct, secondSortProduct;
-        int thirdUnSortProduct, thirdSortProduct;
-        int fourthUnSortProduct, fourthSortProduct;
-
         AccessoriesPageBase accessoriesPage = initPage(getDriver(), AccessoriesPageBase.class);
         accessoriesPage.openURL(ACCESSORIES_LINK);
         Assert.assertTrue(accessoriesPage.isPageOpened(5), "Accessories page isn't opened.");
@@ -122,10 +112,10 @@ public class AdidasTest implements IAbstractTest {
         Assert.assertTrue(accessoriesPage.isFooterContainerPresent(), "Footer container is missing.");
         accessoriesPage.scrollDownPage();
 
-        firstUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(0);
-        secondUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(2);
-        thirdUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(3);
-        fourthUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(5);
+        int firstUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(0);
+        int secondUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(2);
+        int thirdUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(3);
+        int fourthUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(5);
 
         Assert.assertTrue(accessoriesPage.isFilterButtonPresent(), "Filter button isn't visible.");
         accessoriesPage.clickFilterButton();
@@ -142,16 +132,16 @@ public class AdidasTest implements IAbstractTest {
 
         lowPriceToHighPricePage.scrollDownPage();
 
-        firstSortProduct = lowPriceToHighPricePage.getResultPricesAsNumbers().get(0);
+        int firstSortProduct = lowPriceToHighPricePage.getResultPricesAsNumbers().get(0);
         Assert.assertNotEquals(firstUnSortProduct, firstSortProduct, "First products are equals.");
 
-        secondSortProduct = lowPriceToHighPricePage.getResultPricesAsNumbers().get(2);
+        int secondSortProduct = lowPriceToHighPricePage.getResultPricesAsNumbers().get(2);
         Assert.assertNotEquals(secondUnSortProduct, secondSortProduct, "Second products are equals.");
 
-        thirdSortProduct = lowPriceToHighPricePage.getResultPricesAsNumbers().get(3);
+        int thirdSortProduct = lowPriceToHighPricePage.getResultPricesAsNumbers().get(3);
         Assert.assertNotEquals(thirdUnSortProduct, thirdSortProduct, "Third products are equals.");
 
-        fourthSortProduct = lowPriceToHighPricePage.getResultPricesAsNumbers().get(5);
+        int fourthSortProduct = lowPriceToHighPricePage.getResultPricesAsNumbers().get(5);
         Assert.assertNotEquals(fourthUnSortProduct, fourthSortProduct, "Fourth products are equals.");
     }
 
@@ -159,48 +149,32 @@ public class AdidasTest implements IAbstractTest {
     @Test(description = "Using HighPrice to LowPrice filter on AccessoriesPage.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
     public void verifyHighPriceToLowPriceFilter() {
-        int firstUnSortProduct, firstSortProduct;
-        int secondUnSortProduct, secondSortProduct;
-        int thirdUnSortProduct, thirdSortProduct;
-        int fourthUnSortProduct, fourthSortProduct;
-
         AccessoriesPageBase accessoriesPage = initPage(getDriver(), AccessoriesPageBase.class);
         accessoriesPage.openURL(ACCESSORIES_LINK);
         Assert.assertTrue(accessoriesPage.isPageOpened(5), "Accessories page isn't opened.");
-
         Assert.assertTrue(accessoriesPage.isFooterContainerPresent(), "Footer container is missing.");
         accessoriesPage.scrollDownPage();
-
-        firstUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(0);
-        secondUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(1);
-        thirdUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(2);
-        fourthUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(5);
-
+        int firstUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(0);
+        int secondUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(1);
+        int thirdUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(2);
+        int fourthUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(5);
         Assert.assertTrue(accessoriesPage.isFilterButtonPresent(), "Filter button isn't visible.");
         accessoriesPage.clickFilterButton();
-
         Assert.assertTrue(accessoriesPage.isSortByButtonPresent(), "'SORT BY' button isn't present.");
         FilterBlockPageBase filterBlockPage = accessoriesPage.clickOnSortByButton();
-
         Assert.assertTrue(filterBlockPage.isHighPriceToLowPriceButtonPresent(),
                 "HighPrice to LowPrice  filter button is not visible.");
         ProductListResultPageBase highPriceToLowPricePage = filterBlockPage.clickOnHighPriceToLowButton();
-
         Assert.assertTrue(highPriceToLowPricePage.isPopupVisible(), "Popup button isn't visible.");
         highPriceToLowPricePage.clickOnClosePopUp();
-
         highPriceToLowPricePage.scrollDownPage();
-
-        firstSortProduct = highPriceToLowPricePage.getResultPricesAsNumbers().get(0);
+        int firstSortProduct = highPriceToLowPricePage.getResultPricesAsNumbers().get(0);
         Assert.assertNotEquals(firstUnSortProduct, firstSortProduct, "First products are equals.");
-
-        secondSortProduct = highPriceToLowPricePage.getResultPricesAsNumbers().get(1);
+        int secondSortProduct = highPriceToLowPricePage.getResultPricesAsNumbers().get(1);
         Assert.assertNotEquals(secondUnSortProduct, secondSortProduct, "Second products are equals.");
-
-        thirdSortProduct = highPriceToLowPricePage.getResultPricesAsNumbers().get(2);
+        int thirdSortProduct = highPriceToLowPricePage.getResultPricesAsNumbers().get(2);
         Assert.assertNotEquals(thirdUnSortProduct, thirdSortProduct, "Third products are equals.");
-
-        fourthSortProduct = highPriceToLowPricePage.getResultPricesAsNumbers().get(5);
+        int fourthSortProduct = highPriceToLowPricePage.getResultPricesAsNumbers().get(5);
         Assert.assertNotEquals(fourthUnSortProduct, fourthSortProduct, "Fourth products are equals.");
     }
 
@@ -208,11 +182,6 @@ public class AdidasTest implements IAbstractTest {
     @Test(description = "Using TOP SELLERS filter on AccessoriesPage.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
     public void verifyTopSellersFilter() {
-        int firstUnSortProduct, firstSortProduct;
-        int secondUnSortProduct, secondSortProduct;
-        int thirdUnSortProduct, thirdSortProduct;
-        int fourthUnSortProduct, fourthSortProduct;
-
         AccessoriesPageBase accessoriesPage = initPage(getDriver(), AccessoriesPageBase.class);
         accessoriesPage.openURL(ACCESSORIES_LINK);
         Assert.assertTrue(accessoriesPage.isPageOpened(5), "Accessories page isn't opened.");
@@ -220,10 +189,10 @@ public class AdidasTest implements IAbstractTest {
         Assert.assertTrue(accessoriesPage.isFooterContainerPresent(), "Footer container is missing.");
         accessoriesPage.scrollDownPage();
 
-        firstUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(0);
-        secondUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(1);
-        thirdUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(3);
-        fourthUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(5);
+        int firstUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(0);
+        int secondUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(1);
+        int thirdUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(3);
+        int fourthUnSortProduct = accessoriesPage.getProductPricesAsNumbers().get(5);
 
         Assert.assertTrue(accessoriesPage.isFilterButtonPresent(), "Filter button isn't visible.");
         accessoriesPage.clickFilterButton();
@@ -240,16 +209,16 @@ public class AdidasTest implements IAbstractTest {
 
         topSellersPage.scrollDownPage();
 
-        firstSortProduct = topSellersPage.getResultPricesAsNumbers().get(0);
+        int firstSortProduct = topSellersPage.getResultPricesAsNumbers().get(0);
         Assert.assertNotEquals(firstUnSortProduct, firstSortProduct, "First products are equals.");
 
-        secondSortProduct = topSellersPage.getResultPricesAsNumbers().get(1);
+        int secondSortProduct = topSellersPage.getResultPricesAsNumbers().get(1);
         Assert.assertNotEquals(secondUnSortProduct, secondSortProduct, "Second products are equals.");
 
-        thirdSortProduct = topSellersPage.getResultPricesAsNumbers().get(3);
+        int thirdSortProduct = topSellersPage.getResultPricesAsNumbers().get(3);
         Assert.assertNotEquals(thirdUnSortProduct, thirdSortProduct, "Third products are equals.");
 
-        fourthSortProduct = topSellersPage.getResultPricesAsNumbers().get(5);
+        int fourthSortProduct = topSellersPage.getResultPricesAsNumbers().get(5);
         Assert.assertNotEquals(fourthUnSortProduct, fourthSortProduct, "Fourth products are equals.");
     }
 
@@ -260,22 +229,12 @@ public class AdidasTest implements IAbstractTest {
         AccessoriesPageBase accessoriesPage = initPage(getDriver(), AccessoriesPageBase.class);
         accessoriesPage.openURL(ACCESSORIES_LINK);
         Assert.assertTrue(accessoriesPage.isPageOpened(5), "Adidas home page is not opened.");
-
-        /**
-         *   add first and second product to wishlist
-         */
         accessoriesPage.addProductToWishList(1);
         accessoriesPage.addProductToWishList(2);
-
         Assert.assertTrue(accessoriesPage.isPopupVisible(), "Popup button isn't visible.");
         accessoriesPage.clickOnClosePopUp();
         Assert.assertFalse(accessoriesPage.isPopupVisible(), "Popup button is visible.");
-
-        /**
-         *   add third product to wishlist
-         */
         accessoriesPage.addProductToWishList(3);
-
         ProductListResultPageBase wishlistResult = accessoriesPage.clickOnWishListButton();
         Assert.assertFalse(accessoriesPage.isWishlistListEmpty(), "Wishlist page is empty.");
     }

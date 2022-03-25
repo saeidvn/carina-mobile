@@ -1,4 +1,4 @@
-package com.solvd.carinamobile.page.andriod;
+package com.solvd.carinamobile.page.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
