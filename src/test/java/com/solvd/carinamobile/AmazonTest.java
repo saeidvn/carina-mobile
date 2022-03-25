@@ -5,7 +5,6 @@ import com.qaprosoft.carina.core.foundation.report.testrail.TestRailCases;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.solvd.carinamobile.page.common.AmazonPageBase;
 import com.solvd.carinamobile.page.common.ProductListResultPageBase;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -17,15 +16,15 @@ public class AmazonTest implements IAbstractTest {
     @Test(description = "Open the Amazon Home page and search product.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
     public void checkSearchProduct() {
+        SoftAssert softAssert = new SoftAssert();
         AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
         amazonPage.openURL(AMAZON_LINK);
-        Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
-
-//        Assert.assertTrue(amazonPage.isSearchFieldVisible(), "Search field is missing.");
+        softAssert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
+        softAssert.assertTrue(amazonPage.isSearchFieldVisible(), "Search field is missing.");
         amazonPage.clickOnSearchField();
-
         ProductListResultPageBase amazonResultPage = amazonPage.typeProductName("ps5");
-//        Assert.assertTrue(amazonResultPage.isAmazonResultVisible(), "Amazon result page is missing.");
+        softAssert.assertTrue(amazonResultPage.isAmazonResultVisible(), "Amazon result page is missing.");
+        softAssert.assertAll();
     }
 
     @TestRailCases(testCasesId = "11")
