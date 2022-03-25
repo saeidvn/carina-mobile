@@ -68,15 +68,16 @@ public class AmazonTest implements IAbstractTest {
     @Test(description = "Open the Amazon home page, click on the menu, choose Health & Household.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
     public void checkHealthAndHousehold() {
+        SoftAssert softAssert = new SoftAssert();
         AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
         amazonPage.openURL(AMAZON_LINK);
-        Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
-        Assert.assertTrue(amazonPage.isMenuButtonVisible(), "Hamburger Menu button is missing.");
+        softAssert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
+        softAssert.assertTrue(amazonPage.isMenuButtonVisible(), "Hamburger Menu button is missing.");
         amazonPage.clickOnMenuButton();
         ProductListResultPageBase healthAndHouseholdResult = amazonPage.clickOnHealthAndHouseholdButton();
-        Assert.assertEquals(healthAndHouseholdResult.getHealthAndHouseholdResultText()
+        softAssert.assertEquals(healthAndHouseholdResult.getHealthAndHouseholdResultText()
                 , "Health, Household and Baby Care", "Health and household text not equals.");
-
+        softAssert.assertAll();
     }
 
     @TestRailCases(testCasesId = "14")
