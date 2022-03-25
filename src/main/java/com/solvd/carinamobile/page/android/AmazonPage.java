@@ -11,9 +11,9 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AmazonPageBase.class)
 public class AmazonPage extends AmazonPageBase {
 
-//    @FindBy(xpath = "//input[@class='nav-input nav-progressive-attribute']")
+    @FindBy(xpath = "//input[@class='nav-input nav-progressive-attribute']")
 //    @FindBy(xpath = "//android.view.View[@content-desc=\"Clear search keywords\"]")
-    @FindBy(xpath = "//*[@resource-id='nav-search-form']//*[@content-desc='Clear search keywords']")
+//    @FindBy(xpath = "//*[@resource-id='nav-search-form']//*[@content-desc='Clear search keywords']")
     private ExtendedWebElement searchField;
 
     @FindBy(xpath = "//div[@id='nav-gwbar']/a[text()='Best Sellers']")
@@ -52,10 +52,10 @@ public class AmazonPage extends AmazonPageBase {
 
     @Override
     public boolean isSearchFieldVisible() {
-//        return searchField.isVisible();
-        boolean te = searchField.getElement().isEnabled();
-        boolean test = Boolean.parseBoolean(searchField.getAttribute("enabled"));
-        return searchField.isPresent();
+        return searchField.isVisible();
+//        boolean te = searchField.getElement().isEnabled();
+//        boolean test = Boolean.parseBoolean(searchField.getAttribute("enabled"));
+//        return searchField.isPresent();
     }
 
     @Override

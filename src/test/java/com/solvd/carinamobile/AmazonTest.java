@@ -32,36 +32,39 @@ public class AmazonTest implements IAbstractTest {
     @Test(description = "Open the Amazon home page, search 'saw' and use movie's filter.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
     public void checkFilterButton() {
+        SoftAssert softAssert = new SoftAssert();
         AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
         amazonPage.openURL(AMAZON_LINK);
-        Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
-        Assert.assertTrue(amazonPage.isSearchFieldVisible(), "Search field is missing.");
+        softAssert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
+        softAssert.assertTrue(amazonPage.isSearchFieldVisible(), "Search field is missing.");
         amazonPage.clickOnSearchField();
         ProductListResultPageBase sawResultPage = amazonPage.typeProductName("saw");
-        Assert.assertTrue(sawResultPage.isAmazonResultVisible(), "Amazon result page is missing.");
-        Assert.assertTrue(sawResultPage.isFilterButtonVisible(), "Filter button is missing.");
+        softAssert.assertTrue(sawResultPage.isAmazonResultVisible(), "Amazon result page is missing.");
+        softAssert.assertTrue(sawResultPage.isFilterButtonVisible(), "Filter button is missing.");
         sawResultPage.clickOnFilterButton();
-        Assert.assertTrue(sawResultPage.isMovieButtonVisible(), "Movie button is missing.");
+        softAssert.assertTrue(sawResultPage.isMovieButtonVisible(), "Movie button is missing.");
         sawResultPage.clickOnMovieButton();
-        Assert.assertTrue(sawResultPage.isCloseFilterButtonVisible(), "Close Filter button is missing.");
+        softAssert.assertTrue(sawResultPage.isCloseFilterButtonVisible(), "Close Filter button is missing.");
         sawResultPage.clickOnCloseFilterButton();
         sawResultPage.getResultMoviesAsStrings();
-        Assert.assertFalse(sawResultPage.isMoviesResultEmpty(), "Movies are not found.");
+        softAssert.assertFalse(sawResultPage.isMoviesResultEmpty(), "Movies are not found.");
+        softAssert.assertAll();
     }
 
     @TestRailCases(testCasesId = "12")
     @Test(description = "Open the Amazon home page and click on the Best Sellers and choose Books.")
     @MethodOwner(owner = "Saeid Vahidnia", platform = "android")
     public void checkBestSellers() {
+        SoftAssert softAssert = new SoftAssert();
         AmazonPageBase amazonPage = initPage(getDriver(), AmazonPageBase.class);
         amazonPage.openURL(AMAZON_LINK);
-        Assert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
-        Assert.assertTrue(amazonPage.isBestSellersButtonVisible(), "Best sellers button is missing.");
+        softAssert.assertTrue(amazonPage.isPageOpened(), "Amazon home page isn't opened.");
+        softAssert.assertTrue(amazonPage.isBestSellersButtonVisible(), "Best sellers button is missing.");
         amazonPage.clickOnBestSellersButton();
-        Assert.assertTrue(amazonPage.isBooksButtonVisible(), "Books button is missing.");
+        softAssert.assertTrue(amazonPage.isBooksButtonVisible(), "Books button is missing.");
         ProductListResultPageBase amazonBooksResultPage = amazonPage.clickOnBooksButton();
-        Assert.assertTrue(amazonBooksResultPage.isBooksResultVisible(), "Books result is missing.");
-
+        softAssert.assertTrue(amazonBooksResultPage.isBooksResultVisible(), "Books result is missing.");
+        softAssert.assertAll();
     }
 
     @TestRailCases(testCasesId = "13")
