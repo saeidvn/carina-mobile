@@ -131,5 +131,4 @@ public class AmazonTest implements IAbstractTest {
                 , "Incorrect password texts not equals.");
         softAssert.assertAll();
     }
-
 }

@@ -12,8 +12,6 @@ import org.openqa.selenium.support.FindBy;
 public class AmazonPage extends AmazonPageBase {
 
     @FindBy(xpath = "//input[@class='nav-input nav-progressive-attribute']")
-//    @FindBy(xpath = "//android.view.View[@content-desc=\"Clear search keywords\"]")
-//    @FindBy(xpath = "//*[@resource-id='nav-search-form']//*[@content-desc='Clear search keywords']")
     private ExtendedWebElement searchField;
 
     @FindBy(xpath = "//div[@id='nav-gwbar']/a[text()='Best Sellers']")
@@ -53,14 +51,11 @@ public class AmazonPage extends AmazonPageBase {
     @Override
     public boolean isSearchFieldVisible() {
         return searchField.isVisible();
-//        boolean te = searchField.getElement().isEnabled();
-//        boolean test = Boolean.parseBoolean(searchField.getAttribute("enabled"));
-//        return searchField.isPresent();
     }
 
     @Override
     public void clickOnSearchField() {
-        searchField.click(10);
+        searchField.click();
     }
 
     @Override
@@ -77,7 +72,7 @@ public class AmazonPage extends AmazonPageBase {
 
     @Override
     public void clickOnBestSellersButton() {
-        bestSellersButton.click(10);
+        bestSellersButton.click();
     }
 
     @Override
@@ -87,7 +82,7 @@ public class AmazonPage extends AmazonPageBase {
 
     @Override
     public ProductListResultPageBase clickOnBooksButton() {
-        booksButton.click(5);
+        booksButton.click();
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
@@ -98,7 +93,7 @@ public class AmazonPage extends AmazonPageBase {
 
     @Override
     public void clickOnMenuButton() {
-        menuButton.click(5);
+        menuButton.click();
     }
 
     @Override
@@ -108,7 +103,7 @@ public class AmazonPage extends AmazonPageBase {
 
     @Override
     public ProductListResultPageBase clickOnHealthAndHouseholdButton() {
-        healthAndHouseholdButton.click(5);
+        healthAndHouseholdButton.click();
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
@@ -119,7 +114,7 @@ public class AmazonPage extends AmazonPageBase {
 
     @Override
     public ProductListResultPageBase clickOnCustomerServiceButton() {
-        customerServiceButton.click(10);
+        customerServiceButton.click();
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
@@ -130,7 +125,7 @@ public class AmazonPage extends AmazonPageBase {
 
     @Override
     public void clickOnSignInButton() {
-        signInButton.click(10);
+        signInButton.click();
     }
 
     @Override
@@ -150,7 +145,7 @@ public class AmazonPage extends AmazonPageBase {
 
     @Override
     public boolean isPasswordFieldVisible() {
-        return passwordField.isVisible(10);
+        return passwordField.isVisible();
     }
 
     @Override

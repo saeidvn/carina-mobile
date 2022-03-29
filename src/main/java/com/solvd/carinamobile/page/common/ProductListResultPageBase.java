@@ -15,8 +15,6 @@ public abstract class ProductListResultPageBase extends AbstractPage {
 
     public abstract boolean isPopupVisible();
 
-    public abstract List<String> getResultPricesAsStrings();
-
     public abstract List<Integer> getResultPricesAsNumbers();
 
     public abstract void clickOnClosePopUp();
@@ -46,5 +44,7 @@ public abstract class ProductListResultPageBase extends AbstractPage {
     public abstract List<String> getResultMoviesAsStrings();
 
     public abstract boolean isMoviesResultEmpty();
+
+    public abstract String getWishlistText();
 
 }

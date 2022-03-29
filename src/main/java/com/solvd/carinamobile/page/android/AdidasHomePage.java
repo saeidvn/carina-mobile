@@ -41,33 +41,19 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
     @FindBy(xpath = "//button[@data-auto-id='mobile-search-icon']")
     private ExtendedWebElement searchButton;
 
-    @FindBy(xpath = "//a[@class='src-components-___header__wishlistLinkMobile___1FDKv']")
-    private ExtendedWebElement wishListButton;
-
-    @FindBy(xpath = "//div[@class='row keywords___3OtDK']/a[@class='gl-filter keyword___1pfOO uppercased___1YiBt'][1]")
-    private ExtendedWebElement popularRightNow;
-
-    @FindBy(xpath = "(//div[@class='plp-product-card__wishlist-button___qAqKB toggle_wishlist_button___my-ER  '])[%s]")
-    private ExtendedWebElement addToWishlistButton;
-
     public AdidasHomePage(WebDriver driver) {
         super(driver);
     }
 
     @Override
     public HelpPageBase clickOnHelpButton() {
-        helpButton.click(20);
+        helpButton.click();
         return initPage(getDriver(), HelpPageBase.class);
     }
 
     @Override
-    public boolean isPageOpened() {
-        return helpButton.isElementPresent();
-    }
-
-    @Override
     public void clickOnProfileButton() {
-        profileButton.clickIfPresent(20);
+        profileButton.click();
     }
 
     @Override
@@ -89,7 +75,7 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
 
     @Override
     public void clickOnLoginButton() {
-        loginButton.click(20);
+        loginButton.click();
     }
 
     @Override
@@ -100,7 +86,7 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
 
     @Override
     public void clickOnSearchButton() {
-        searchButton.click(20);
+        searchButton.click();
     }
 
     @Override
@@ -116,28 +102,28 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isProfileButtonPresent() {
-        return profileButton.isPresent();
+    public boolean isProfileButtonVisible() {
+        return profileButton.isVisible();
     }
 
     @Override
-    public boolean isVisitYourAccountPresent() {
-        return visitYourAccountButton.isPresent();
+    public boolean isVisitYourAccountVisible() {
+        return visitYourAccountButton.isVisible();
     }
 
     @Override
-    public boolean isEmailFieldPresent() {
-        return emailField.isPresent();
+    public boolean isEmailFieldVisible() {
+        return emailField.isVisible();
     }
 
     @Override
     public boolean isContinueButtonVisible() {
-        return continueButton.isVisible(20);
+        return continueButton.isVisible();
     }
 
     @Override
-    public boolean isPasswordFieldPresent() {
-        return passwordField.isPresent(20);
+    public boolean isPasswordFieldVisible() {
+        return passwordField.isVisible();
     }
 
     @Override
@@ -151,34 +137,12 @@ public class AdidasHomePage extends AdidasHomePageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isSearchFieldPresent() {
-        return searchField.isPresent();
-    }
-
-    @Override
-    public boolean isPopularProductPresent() {
-        return popularRightNow.isPresent();
-    }
-
-    @Override
-    public WishlistPageBase clickOnWishListButton() {
-        wishListButton.click(20);
-        return initPage(getDriver(), WishlistPageBase.class);
-    }
-
-    @Override
-    public void clickOnFirstPopularProduct() {
-        popularRightNow.click();
+    public boolean isSearchFieldVisible() {
+        return searchField.isVisible();
     }
 
     @Override
     public void scrollDownPage() {
         swipe(footerContainer);
     }
-
-    @Override
-    public void addProductToWishList (int indexOfProduct) {
-        addToWishlistButton.format(indexOfProduct).click();
-    }
-
 }

@@ -13,13 +13,13 @@ public abstract class AccessoriesPageBase extends AbstractPage {
 
     public abstract void clickFilterButton();
 
-    public abstract boolean isFilterButtonPresent();
+    public abstract boolean isFilterButtonVisible();
 
-    public abstract boolean isSortByButtonPresent();
+    public abstract boolean isSortByButtonVisible();
 
-    public abstract List<String> getProductPricesAsStrings();
+    public abstract WishlistPageBase clickOnWishlistButton();
 
-    public abstract List<Integer> getProductPricesAsNumbers();
+    public abstract List<Integer> getResultPricesAsNumbers();
 
     public abstract ProductListResultPageBase clickOnWishListButton();
 
@@ -31,7 +31,7 @@ public abstract class AccessoriesPageBase extends AbstractPage {
 
     public abstract void scrollDownPage();
 
-    public abstract boolean isFooterContainerPresent();
+    public abstract boolean isFooterContainerVisible();
 
     public abstract void clickOnClosePopUp();
 

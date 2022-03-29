@@ -25,35 +25,35 @@ public class FilterBlockPage extends FilterBlockPageBase {
 
     @Override
     public ProductListResultPageBase clickOnLowPriceToHighButton() {
-        lowPriceToHighPriceButton.clickIfPresent();
+        lowPriceToHighPriceButton.click();
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
     @Override
     public ProductListResultPageBase clickOnHighPriceToLowButton() {
-        highPriceToLowPriceButton.clickIfPresent();
+        highPriceToLowPriceButton.click();
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
     @Override
     public ProductListResultPageBase clickOnTopSellersButton() {
-        topSellersButton.clickIfPresent();
+        topSellersButton.click();
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
     @Override
-    public boolean isLowPriceToHighPriceButtonPresent() {
-        return lowPriceToHighPriceButton.isPresent();
+    public boolean isLowPriceToHighPriceButtonVisible() {
+        return lowPriceToHighPriceButton.isVisible();
     }
 
     @Override
-    public boolean isHighPriceToLowPriceButtonPresent() {
-        return highPriceToLowPriceButton.isPresent();
+    public boolean isHighPriceToLowPriceButtonVisible() {
+        return highPriceToLowPriceButton.isVisible();
     }
 
     @Override
-    public boolean isTopSellersButtonPresent() {
-        return topSellersButton.isPresent();
+    public boolean isTopSellersButtonVisible() {
+        return topSellersButton.isVisible();
     }
 
 }

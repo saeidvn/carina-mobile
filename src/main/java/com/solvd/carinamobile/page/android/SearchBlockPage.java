@@ -20,7 +20,7 @@ public class SearchBlockPage extends SearchBlockPageBase {
 
     @Override
     public ProductListResultPageBase clickOnCapButton() {
-        capButton.clickIfPresent(10);
+        capButton.click();
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
@@ -31,6 +31,6 @@ public class SearchBlockPage extends SearchBlockPageBase {
 
     @Override
     public boolean isNewFrameVisible() {
-        return capButton.isPresent();
+        return capButton.isVisible();
     }
 }

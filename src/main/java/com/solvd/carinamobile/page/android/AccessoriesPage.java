@@ -6,11 +6,12 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.solvd.carinamobile.page.common.AccessoriesPageBase;
 import com.solvd.carinamobile.page.common.FilterBlockPageBase;
 import com.solvd.carinamobile.page.common.ProductListResultPageBase;
+import com.solvd.carinamobile.page.common.WishlistPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AccessoriesPageBase.class)
 public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils {
@@ -42,49 +43,51 @@ public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils
 
     @Override
     public void clickFilterButton() {
-        filterButton.click(20);
+        filterButton.click();
     }
 
     @Override
     public FilterBlockPageBase clickOnSortByButton() {
-        sortByButton.click(20);
+        sortByButton.click();
         return initPage(getDriver(), FilterBlockPageBase.class);
     }
 
     @Override
-    public boolean isFilterButtonPresent() {
-        return filterButton.isPresent();
+    public boolean isFilterButtonVisible() {
+        return filterButton.isVisible();
     }
 
     @Override
-    public boolean isSortByButtonPresent() {
-        return sortByButton.isPresent();
+    public boolean isSortByButtonVisible() {
+        return sortByButton.isVisible();
     }
 
     @Override
-    public List<String> getProductPricesAsStrings() {
-        return productPrices.stream()
-                .map(ExtendedWebElement::getText)
-                .collect(Collectors.toList());
+    public WishlistPageBase clickOnWishlistButton() {
+        wishListButton.click();
+        return initPage(getDriver(), WishlistPageBase.class);
     }
 
     @Override
-    public List<Integer> getProductPricesAsNumbers() {
-        return getProductPricesAsStrings().stream()
-                .map(price -> price.replaceAll("[^0-9]", ""))
+    public List<Integer> getResultPricesAsNumbers() {
+        List<Integer> productPrice = new ArrayList<>();
+        productPrices.stream()
+                .map(extendedWebElement -> extendedWebElement.getText()
+                        .replaceAll("[^0-9]", ""))
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .forEach(productPrice::add);
+        return productPrice;
     }
 
     @Override
     public ProductListResultPageBase clickOnWishListButton() {
-        wishListButton.click(20);
+        wishListButton.click();
         return initPage(getDriver(), ProductListResultPageBase.class);
     }
 
     @Override
     public void addProductToWishList(int indexOfProduct) {
-        addToWishlistButton.format(indexOfProduct).click(20);
+        addToWishlistButton.format(indexOfProduct).click();
     }
 
     @Override
@@ -98,18 +101,18 @@ public class AccessoriesPage extends AccessoriesPageBase implements IMobileUtils
     }
 
     @Override
-    public boolean isFooterContainerPresent() {
-        return footerContainer.isPresent();
+    public boolean isFooterContainerVisible() {
+        return footerContainer.isVisible();
     }
 
     @Override
     public void clickOnClosePopUp() {
-        popupButton.click(20);
+        popupButton.click();
     }
 
     @Override
     public boolean isPopupVisible() {
-        return popupButton.isVisible(20);
+        return popupButton.isVisible();
     }
 
 }

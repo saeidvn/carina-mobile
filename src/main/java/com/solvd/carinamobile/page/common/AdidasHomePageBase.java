@@ -31,28 +31,20 @@ public abstract class AdidasHomePageBase extends AbstractPage {
 
     public abstract SearchBlockPageBase searchProduct(String productName);
 
-    public abstract boolean isProfileButtonPresent();
+    public abstract boolean isProfileButtonVisible();
 
-    public abstract boolean isVisitYourAccountPresent();
+    public abstract boolean isVisitYourAccountVisible();
 
-    public abstract boolean isEmailFieldPresent();
+    public abstract boolean isEmailFieldVisible();
 
     public abstract boolean isContinueButtonVisible();
 
-    public abstract boolean isPasswordFieldPresent();
+    public abstract boolean isPasswordFieldVisible();
 
     public abstract boolean isLoginButtonVisible();
 
-    public abstract boolean isSearchFieldPresent();
-
-    public abstract boolean isPopularProductPresent();
-
-    public abstract WishlistPageBase clickOnWishListButton();
-
-    public abstract void clickOnFirstPopularProduct();
+    public abstract boolean isSearchFieldVisible();
 
     public abstract void scrollDownPage();
-
-    public abstract void addProductToWishList (int indexOfProduct);
 
 }

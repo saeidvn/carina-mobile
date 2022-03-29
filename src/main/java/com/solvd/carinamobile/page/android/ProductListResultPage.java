@@ -7,6 +7,7 @@ import com.solvd.carinamobile.page.common.ProductListResultPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,23 +47,22 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     @FindBy(xpath = "//div[@class='a-section a-spacing-none s-title-instructions-style']")
     private List<ExtendedWebElement> listOfMovies;
 
+    @FindBy(xpath = "//h4[text()='My Wishlist']")
+    private ExtendedWebElement myWishlistText;
+
     public ProductListResultPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public List<String> getResultPricesAsStrings() {
-        return productPrices.stream()
-                .map(ExtendedWebElement::getText)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<Integer> getResultPricesAsNumbers() {
-        return getResultPricesAsStrings().stream()
-                .map(price -> price.replaceAll("[^0-9]", ""))
+        List<Integer> productPrice = new ArrayList<>();
+        productPrices.stream()
+                .map(extendedWebElement -> extendedWebElement.getText()
+                        .replaceAll("[^0-9]", ""))
                 .map(Integer::parseInt)
-                .collect(Collectors.toList());
+                .forEach(productPrice::add);
+        return productPrice;
     }
 
     @Override
@@ -72,12 +72,12 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
 
     @Override
     public boolean isPopupVisible() {
-        return popupButton.isVisible(10);
+        return popupButton.isVisible();
     }
 
     @Override
     public void clickOnClosePopUp() {
-        popupButton.click(10);
+        popupButton.click();
     }
 
     @Override
@@ -87,7 +87,7 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
 
     @Override
     public boolean isAmazonResultVisible() {
-        return amazonSearchResult.isVisible(10);
+        return amazonSearchResult.isVisible();
     }
 
     @Override
@@ -97,7 +97,7 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
 
     @Override
     public void clickOnFilterButton() {
-        filterButton.click(10);
+        filterButton.click();
     }
 
     @Override
@@ -122,7 +122,7 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
 
     @Override
     public void clickOnMovieButton() {
-        movieButton.click(10);
+        movieButton.click();
     }
 
     @Override
@@ -132,7 +132,7 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
 
     @Override
     public void clickOnCloseFilterButton() {
-        closeFilterButton.click(10);
+        closeFilterButton.click();
     }
 
     @Override
@@ -145,6 +145,11 @@ public class ProductListResultPage extends ProductListResultPageBase implements 
     @Override
     public boolean isMoviesResultEmpty() {
         return listOfMovies.isEmpty();
+    }
+
+    @Override
+    public String getWishlistText() {
+        return myWishlistText.getText();
     }
 
 }

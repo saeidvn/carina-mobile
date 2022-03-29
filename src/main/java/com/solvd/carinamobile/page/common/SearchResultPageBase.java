@@ -12,5 +12,4 @@ public abstract class SearchResultPageBase extends AbstractPage {
     public abstract boolean isSearchNoContentTitleVisible();
 
     public abstract boolean isSearchNoContentDescriptionVisible();
-
 }

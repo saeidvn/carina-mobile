@@ -18,7 +18,7 @@ public class HelpPage extends HelpPageBase {
 
     @Override
     public boolean isHelpContentTitleVisible() {
-        return helpContentTitle.isVisible(20);
+        return helpContentTitle.isVisible();
     }
 
 }

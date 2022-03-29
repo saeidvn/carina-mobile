@@ -10,5 +10,4 @@ public abstract class WishlistPageBase extends AbstractPage {
     }
 
     public abstract boolean isProductListEmpty();
-
 }
