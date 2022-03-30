@@ -157,5 +157,4 @@ public class AmazonPage extends AmazonPageBase {
     public String getIncorrectPasswordText() {
         return incorrectPasswordText.getText();
     }
-
 }
