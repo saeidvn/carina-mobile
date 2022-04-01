@@ -3,29 +3,41 @@ package com.solvd.carinamobile.page.common;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
+import java.util.List;
+
 public abstract class TrackGoHomePageBase extends AbstractPage {
 
     public TrackGoHomePageBase(WebDriver driver) {
         super(driver);
     }
 
+    public abstract boolean isHamburgerMenuButtonPresent();
+
     public abstract void clickOnMenuButton();
 
-    public abstract void clickOnLoginWithEmailButton();
+    public abstract boolean isLoginWithEmailButtonPresent();
 
-    public abstract boolean isEmailFieldVisible();
+    public abstract LoginPageBase clickOnLoginWithEmailButton();
 
-    public abstract void typeValidEmail(String email);
+    public abstract boolean isExitButtonPresent();
 
-    public abstract void typeValidPassword(String password);
+    public abstract void clickOnExitButton();
 
-    public abstract void clickOnSignInButton();
+    public abstract boolean isSettingsButtonPresent();
 
-    public abstract void clickOnSettingsButton();
+    public abstract SettingsBlockPageBase clickOnSettingsButton();
 
-    public abstract void clickOnDarkThemeButton();
+    public abstract List<String> getFieldsOnMenuBar();
 
-    public abstract void clickOnChangeThemeButton();
+    public abstract boolean isMenuBarFieldsEmpty();
 
-    public abstract void clickOnEuroRadioButton();
+    public abstract String getTrackgoVersion();
+
+    public abstract boolean isGoodsButtonPresent();
+
+    public abstract GoodsPageBase clickOnGoodsButton();
+
+    public abstract boolean isPricesButtonPresent();
+
+    public abstract PricesPageBase clickOnPricesButton();
 }

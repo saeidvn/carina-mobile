@@ -3,9 +3,12 @@ package com.solvd.carinamobile.page.TrackgoApp;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.solvd.carinamobile.page.common.TrackGoHomePageBase;
+import com.solvd.carinamobile.page.common.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = TrackGoHomePageBase.class)
 public class TrackGoHomePage extends TrackGoHomePageBase implements IMobileUtils {
@@ -16,36 +19,31 @@ public class TrackGoHomePage extends TrackGoHomePageBase implements IMobileUtils
     @FindBy(xpath = "//android.view.View[@content-desc='Log in with email']")
     private ExtendedWebElement loginButton;
 
-//    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[1]")
-    @FindBy(className = "android.widget.EditText")
-    private ExtendedWebElement emailField;
-
-    @FindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.EditText[2]")
-    private ExtendedWebElement passwordField;
-
-    @FindBy(xpath = "")
-    private ExtendedWebElement goButton;
-
-    @FindBy(xpath = "//android.widget.Button[@content-desc='Sign in']")
-    private ExtendedWebElement signInButton;
+    @FindBy(xpath = "//android.view.View[@content-desc='Exit']")
+    private ExtendedWebElement exitButton;
 
     @FindBy(xpath = "//android.view.View[@content-desc='Settings']")
     private ExtendedWebElement settingsButton;
 
-    @FindBy(xpath = "//android.view.View[@content-desc='Dark theme']")
-    private ExtendedWebElement darkThemeButton;
+    @FindBy(xpath = "//android.view.View")
+    private List<ExtendedWebElement> menuBarFields;
 
-    @FindBy(xpath = "(//android.view.View[@content-desc='Dark theme'])[2]/android.widget.Switch")
-    private ExtendedWebElement changeThemeButton;
+    @FindBy(xpath = "//android.view.View[@content-desc='ver: 1.2.87']")
+    private ExtendedWebElement trackgoVersion;
 
-    @FindBy(xpath = "//android.view.View[@content-desc='Currency Choose currency for added products']")
-    private ExtendedWebElement currencyButton;
+    @FindBy(xpath = "//android.widget.Button[@content-desc='Goods']")
+    private ExtendedWebElement goodsButton;
 
-    @FindBy(xpath = "//android.view.View[@content-desc='Euro']/android.widget.RadioButton")
-    private ExtendedWebElement euroRadioButton;
+    @FindBy(xpath = "//android.widget.Button[@content-desc='Prices']")
+    private ExtendedWebElement pricesButton;
 
     public TrackGoHomePage(WebDriver driver) {
         super(driver);
+    }
+
+    @Override
+    public boolean isHamburgerMenuButtonPresent() {
+        return hamburgerMenuButton.isPresent();
     }
 
     @Override
@@ -54,51 +52,73 @@ public class TrackGoHomePage extends TrackGoHomePageBase implements IMobileUtils
     }
 
     @Override
-    public void clickOnLoginWithEmailButton() {
+    public boolean isLoginWithEmailButtonPresent() {
+        return loginButton.isPresent();
+    }
+
+    @Override
+    public LoginPageBase clickOnLoginWithEmailButton() {
         loginButton.click();
+        return initPage(getDriver(), LoginPageBase.class);
     }
 
     @Override
-    public boolean isEmailFieldVisible() {
-        return emailField.isVisible();
+    public boolean isExitButtonPresent() {
+        return exitButton.isPresent();
     }
 
     @Override
-    public void typeValidEmail(String email) {
-        emailField.type(email);
+    public void clickOnExitButton() {
+        exitButton.click();
     }
 
     @Override
-    public void typeValidPassword(String password) {
-        passwordField.type(password);
-        hideKeyboard();
+    public boolean isSettingsButtonPresent() {
+        return settingsButton.isPresent();
     }
 
     @Override
-    public void clickOnSignInButton() {
-        signInButton.click();
-    }
-
-    @Override
-    public void clickOnSettingsButton() {
+    public SettingsBlockPageBase clickOnSettingsButton() {
         settingsButton.click();
+        return initPage(getDriver(), SettingsBlockPageBase.class);
     }
 
     @Override
-    public void clickOnDarkThemeButton() {
-        darkThemeButton.click();
+    public List<String> getFieldsOnMenuBar() {
+        return menuBarFields.stream()
+                .map(ExtendedWebElement::getText)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void clickOnChangeThemeButton() {
-        changeThemeButton.click();
+    public boolean isMenuBarFieldsEmpty() {
+        return menuBarFields.isEmpty();
     }
 
     @Override
-    public void clickOnEuroRadioButton() {
-        euroRadioButton.click();
+    public String getTrackgoVersion() {
+        return trackgoVersion.getText();
     }
 
+    @Override
+    public boolean isGoodsButtonPresent() {
+        return goodsButton.isPresent();
+    }
 
+    @Override
+    public GoodsPageBase clickOnGoodsButton() {
+        goodsButton.click();
+        return initPage(getDriver(), GoodsPageBase.class);
+    }
 
+    @Override
+    public boolean isPricesButtonPresent() {
+        return pricesButton.isPresent();
+    }
+
+    @Override
+    public PricesPageBase clickOnPricesButton() {
+        pricesButton.click();
+        return initPage(getDriver(), PricesPageBase.class);
+    }
 }
