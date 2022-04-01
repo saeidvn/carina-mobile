@@ -29,9 +29,15 @@ public abstract class SettingsBlockPageBase extends AbstractPage {
 
     public abstract void clickOnRegionButton();
 
+    public abstract boolean isRussianRadioButtonPresent();
+
     public abstract void clickOnRussianRadioButton();
 
+    public abstract boolean isTimeZonesButtonPresent();
+
     public abstract void clickOnTimeZonesButton();
+
+    public abstract boolean isMinskRadioButtonPresent();
 
     public abstract void clickOnMinskRadioButton();
 

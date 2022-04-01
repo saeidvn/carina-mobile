@@ -98,7 +98,8 @@ public class TrackGoAppTest implements IAbstractTest {
         SettingsBlockPageBase settingsBlockPage = trackGoHomePage.clickOnSettingsButton();
         softAssert.assertTrue(settingsBlockPage.isRegionButtonPresent(), "Region Button is missing");
         settingsBlockPage.clickOnRegionButton();
-
+        softAssert.assertTrue(settingsBlockPage.isRussianRadioButtonPresent()
+                , "Russian Radio button is missing");
         settingsBlockPage.clickOnRussianRadioButton();
         softAssert.assertAll();
     }
@@ -113,9 +114,9 @@ public class TrackGoAppTest implements IAbstractTest {
         trackGoHomePage.clickOnMenuButton();
         softAssert.assertTrue(trackGoHomePage.isSettingsButtonPresent(), "Settings button is missing");
         SettingsBlockPageBase settingsBlockPage = trackGoHomePage.clickOnSettingsButton();
-
+        softAssert.assertTrue(settingsBlockPage.isTimeZonesButtonPresent(), "Time Zones button is missing");
         settingsBlockPage.clickOnTimeZonesButton();
-
+        softAssert.assertTrue(settingsBlockPage.isMinskRadioButtonPresent(), "Minsk Radio button is missing");
         settingsBlockPage.clickOnMinskRadioButton();
         softAssert.assertAll();
     }

@@ -94,13 +94,28 @@ public class SettingsBlockPage extends SettingsBlockPageBase {
     }
 
     @Override
+    public boolean isRussianRadioButtonPresent() {
+        return russianRadioButton.isPresent();
+    }
+
+    @Override
     public void clickOnRussianRadioButton() {
         russianRadioButton.click();
     }
 
     @Override
+    public boolean isTimeZonesButtonPresent() {
+        return timeZonesButton.isPresent();
+    }
+
+    @Override
     public void clickOnTimeZonesButton() {
         timeZonesButton.click();
+    }
+
+    @Override
+    public boolean isMinskRadioButtonPresent() {
+        return europeMinskRadioButton.isPresent();
     }
 
     @Override
